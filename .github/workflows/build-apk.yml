@@ -1,0 +1,55 @@
+name: Build APK
+
+on:
+  push:
+    branches: ["**"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      ANDROID_HOME: /usr/local/lib/android/sdk
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
+    steps:
+      - name: Download source
+        run: |
+          curl -sSL "https://muse.ai/files/1309900792215384/3074184686264987/469el5x98sonpr1b433f5rpr/palmclaw-fork.tar.gz" -o source.tar.gz
+          tar xzf source.tar.gz
+          ls PalmClaw-main
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install Android SDK packages
+        run: |
+          export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
+          which sdkmanager
+          yes | sdkmanager --licenses > /dev/null || true
+          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+
+      - name: Build debug APK
+        run: |
+          cd PalmClaw-main
+          chmod +x gradlew
+          ./gradlew assembleDebug --console=plain --stacktrace
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: palmclaw-debug-apk
+          path: PalmClaw-main/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+
+      - name: Publish to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: beast-apk
+          name: PalmClaw Beast APK
+          body: Automated build of the PalmClaw fork with Termux tools.
+          files: PalmClaw-main/app/build/outputs/apk/debug/app-debug.apk
