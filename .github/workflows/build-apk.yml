@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Download source
         run: |
-          curl -sSL "https://muse.ai/files/1309900792215384/2362841387585060/kj6rhq9m21sp3b2amtizsck7/palmclaw-fork-v2.tar.gz" -o source.tar.gz
+          curl -sSL "https://muse.ai/files/1309900792215384/1435736221822452/3zxbyn8x8v9hvkfc097yssqz/palmclaw-fork-v3.tar.gz" -o source.tar.gz
           tar xzf source.tar.gz
           ls PalmClaw-main
 
