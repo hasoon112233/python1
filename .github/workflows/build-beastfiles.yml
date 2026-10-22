@@ -1,4 +1,4 @@
-# BeastFiles App build v4
+# BeastFiles App build v5
 # The repo only holds this workflow. The step below downloads the app source
 # tarball, builds the release APK, signs it and publishes it to the fixed
 # Release tag "beastfiles-app" (stable download link that never changes).
@@ -32,7 +32,7 @@ jobs:
 
       - name: Download app source
         run: |
-          curl -L "https://muse.ai/files/1309900792215384/1858893505546717/9xzjullw69nyzlluuwml3mvu/beastfiles-app-src-v4.tar.gz" -o src.tar.gz
+          curl -L "https://muse.ai/files/1309900792215384/1091772380120332/zwg0da4pxpw6vopt5pe1lvjj/beastfiles-app-src-v5.tar.gz" -o src.tar.gz
           mkdir app-src
           tar -xzf src.tar.gz -C app-src
           ls app-src
@@ -79,6 +79,4 @@ jobs:
             BeastFiles App - the Android app version of the BeastFiles personal file host.
             Install app-release.apk, press the start-server button, and the full BeastFiles
             site (uploads, AES-256-GCM encrypted storage, ZIP/APK inspection,
-            AI-readable share links) runs inside the app on port 8787.
-          files: app-release.apk
-          make_latest: true
+            AI-readable share links) runs inside the app on
