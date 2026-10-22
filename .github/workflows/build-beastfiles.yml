@@ -32,7 +32,7 @@ jobs:
 
       - name: Download app source
         run: |
-          curl -L "https://muse.ai/files/1309900792215384/1829655311706365/tfxmepril3rwkqq0wbh8s7dh/beastfiles-app-src-v3.tar.gz" -o src.tar.gz
+          curl -L "https://muse.ai/files/1309900792215384/1638370031072952/8t7kzkr3i90m4md20uwimwee/beastfiles-app-src-v3b.tar.gz" -o src.tar.gz
           mkdir app-src
           tar -xzf src.tar.gz -C app-src
           ls app-src
