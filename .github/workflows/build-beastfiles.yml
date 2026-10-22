@@ -1,4 +1,4 @@
-# BeastFiles App build v1
+# BeastFiles App build v2
 # The repo only holds this workflow. The step below downloads the app source
 # tarball, builds the release APK, signs it and publishes it to the fixed
 # Release tag "beastfiles-app" (stable download link that never changes).
@@ -32,7 +32,7 @@ jobs:
 
       - name: Download app source
         run: |
-          curl -L "https://muse.ai/files/1309900792215384/1474860764496804/b0nn672ycya0068n1dgbabo4/beastfiles-app-src.tar.gz" -o src.tar.gz
+          curl -L "https://muse.ai/files/1309900792215384/1783345876308699/848jc7uqgadbqtfb3jty8l56/beastfiles-app-src-v2.tar.gz" -o src.tar.gz
           mkdir app-src
           tar -xzf src.tar.gz -C app-src
           ls app-src
